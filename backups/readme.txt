@@ -1,4 +1,4 @@
-D:\Dev\IT30A- TORIBIO\backups
+D:\Dev\IT30B- PAQUIBOT\backups
 
 1.CREATE DATABASE <database_name>;
 2.SHOW DATABASES;
