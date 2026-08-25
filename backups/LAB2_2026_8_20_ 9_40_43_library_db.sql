@@ -24,6 +24,33 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/ `library_db` /*!40100 DEFAULT CHARACTER
 USE `library_db`;
 
 --
+-- Table structure for table `books`
+--
+
+DROP TABLE IF EXISTS `books`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `books` (
+  `book_id` int(11) NOT NULL AUTO_INCREMENT,
+  `book_title` varchar(50) NOT NULL,
+  `book_author` varchar(100) NOT NULL,
+  `book_category` varchar(50) NOT NULL,
+  `book_created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`book_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `books`
+--
+
+LOCK TABLES `books` WRITE;
+/*!40000 ALTER TABLE `books` DISABLE KEYS */;
+INSERT INTO `books` VALUES (1,'MATHEMATICS IN THE MODERN WORLD','WINGSTON SIRUG','ACADEMIC','2026-08-25 01:32:13'),(2,'GENERAL SCIENCE AND TECHNOLOGY','ADITYA RAJ ANAND','ACADEMIC','2026-08-25 01:32:13');
+/*!40000 ALTER TABLE `books` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `students`
 --
 
@@ -35,8 +62,9 @@ CREATE TABLE `students` (
   `STUDENT_FIRST_NAME` varchar(50) NOT NULL,
   `STUDENT_LAST_NAME` varchar(50) NOT NULL,
   `STUDENT_COURSE` varchar(50) NOT NULL,
+  `student_created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`student_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +73,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES (1,'JOHN LESTER','TORIBIO','BSIT');
+INSERT INTO `students` VALUES (1,'JOHN LESTER','TORIBIO','BSIT','2026-08-20 03:38:21'),(2,'EUNACE','Emactao','BSIT','2026-08-20 03:41:32');
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +86,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-08-20 10:12:20
+-- Dump completed on 2026-08-25  9:40:47

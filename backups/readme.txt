@@ -10,10 +10,9 @@ VALUES(values);
 
 Utility Commands
 \! cls
-mysqldump -u root -p --databases library_db > "C:\dev\IT30A\backups\08182026_library_db.sql"
+mysqldump -u root -p --databases library_db > "D:\dev\IT30A\backups\08182026_library_db.sql"
 
-mysqldump -u root -p --databases library_db > "C:\dev\IT30A\backups\%date:~-4%_%date:~4,2%_%date:~7,2%_%time:~0,2%_%time:~3,2%_%time:~6,2%_library_db.sql"
-
+mysqldump -u root -p --databases library_db > "D:\dev\IT30A\backups\%date:~-4%_%date:~4,2%_%date:~7,2%_%time:~0,2%_%time:~3,2%_%time:~6,2%_library_db.sql"
 
 %date:~-4%_ 
 %date:~4,2%_
@@ -22,6 +21,9 @@ mysqldump -u root -p --databases library_db > "C:\dev\IT30A\backups\%date:~-4%_%
 %time:~3,2%_
 %time:~6,2%_
 library_db.sql"
+
+
+
 
 ALTER TABLE students ADD COLUMN student_created_at TIMESTAMP NULL DEFAULT NULL;
 UPDATE students SET student_created_at = CURRENT_TIMESTAMP WHERE student_created_at IS NULL;
