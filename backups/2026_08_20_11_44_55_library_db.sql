@@ -32,11 +32,12 @@ DROP TABLE IF EXISTS `students`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `students` (
   `student_id` int(11) NOT NULL AUTO_INCREMENT,
-  `student_first_name` varchar(50) NOT NULL,
-  `student_last_name` varchar(50) NOT NULL,
-  `student_course` varchar(50) NOT NULL,
+  `STUDENT_FIRST_NAME` varchar(50) NOT NULL,
+  `STUDENT_LAST_NAME` varchar(50) NOT NULL,
+  `STUDENT_COURSE` varchar(50) NOT NULL,
+  `student_created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`student_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +46,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES (1,'WAHIV','PAQUIBOT','BSIT');
+INSERT INTO `students` VALUES (1,'JOHN LESTER','TORIBIO','BSIT','2026-08-20 03:38:21'),(2,'EUNACE','Emactao','BSIT','2026-08-20 03:41:32');
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-08-18  9:59:03
+-- Dump completed on 2026-08-20 11:44:56
