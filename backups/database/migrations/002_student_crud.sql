@@ -1,11 +1,11 @@
 -- Student Query #1
 SELECT * FROM students;
 
---Student Query #2 - Select students order by id ASC
+-- Student Query #2 - Select students order by id ASC
 SELECT * FROM students
     ORDER BY student_id ASC;
 
-    --Student Query #3 -- select students order by id DESC
+    -- Student Query #3 -- select students order by id DESC
     SELECT * FROM students
     ORDER BY student_id DESC;
 
