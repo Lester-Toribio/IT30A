@@ -42,23 +42,24 @@ if($section==='students'){
     $students = $stmt->fetchAll();
 }
 
-//Create Student
+//Create Student    
 if ($section==='students' && $action==='create'){
 
-if($_SERVER['REQUEST_METHOD'] === 'POST')
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-    $firstName =trim($_POST['student_first_name']?? '');
-      $lastName =trim($_POST['student_last_name']?? '');
-        $course =trim($_POST['student_course']?? '');
+    $firstName = trim($_POST['student_first_name'] ?? '');
+    $lastName = trim($_POST['student_last_name'] ?? '');
+    $course = trim($_POST['student_course'] ?? '');
 
-    if($firstName !== '' && $lastName !=='' && $course!==''){
+    if($firstName !== '' && $lastName !== '' && $course !== ''){
     
     $sql=("
         INSERT INTO students(
-        student_first_name,
+        student_first_name, 
         student_last_name,
         student_course
-        )VALUES(?,?,?)
+        )
+        VALUES(?,?,?)
     ");
     $stmt = $pdo->prepare($sql);
 
@@ -71,9 +72,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
 
     //$_SESSION['alert] = 'Student Saved Successfully';
 
-header("Location: index.php?section=students");
-exit;
+    header("Location: index.php?section=students");
+    exit;
     }
+}
 }
 
 
@@ -145,7 +147,7 @@ exit;
 
             <?php else : ?>
                 
-        <table border = "1">
+        <table >
             <thead>
                 <tr>
                     <th>ID</th>
