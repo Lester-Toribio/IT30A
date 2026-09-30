@@ -191,6 +191,73 @@ if($section ==='students' && $action === 'update'){
 
 
 }
+// update book
+
+if($section ==='books' && $action === 'update'){
+    $bookId= (int) ($_GET['id'] ?? 0);
+
+
+    //retrieve book information
+
+    $stmt= $pdo->prepare("
+    SELECT *
+    FROM books
+    WHERE book_id = ?
+
+    ");
+
+    $stmt->execute([$bookId]);
+
+    $book = $stmt->fetch();
+
+    //update book information
+
+   if($_SERVER['REQUEST_METHOD'] === 'POST'){
+         
+        $bookTitle = trim($_POST['book_title'] ?? '');
+        $bookAuthor = trim($_POST['book_author'] ?? '');
+        $bookCategory = trim($_POST['book_category'] ?? '');
+
+        if($bookTitle !== '' && $bookAuthor !== '' && $bookCategory !== ''){
+        $sql=("
+        UPDATE books
+        SET 
+            book_title=?,
+            book_author=?,
+            book_category=?
+        WHERE book_id=?
+        ");
+
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->execute([
+            $bookTitle,
+            $bookAuthor,
+            $bookCategory,
+            $bookId
+        ]);
+
+        $_SESSION['alert'] = 'book updated successfully';
+
+        header("Location: index.php?section=books");
+        exit;
+    }
+    }
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -367,8 +434,9 @@ if($section ==='students' && $action === 'update'){
         <h1>Books</h1>
 
         <p>
-        <a href="index.php?section=books&action=create">
-            Add Book</a>
+            <a href="index.php?section=books&action=create">
+            Add Book
+            </a>
 
         </p>
 
@@ -376,45 +444,90 @@ if($section ==='students' && $action === 'update'){
             <h2>Add Books</h2>
 
 
-<form method="POST">
+            <form method="POST">
             <p>
-            <label>Book Title</label>
-            <br>
-            <input type="text"
+             <label>Book Title</label>
+                <br>
+                <input type="text"
                     name="book_title"
                     required
                     />
-            </p>
+             </p>
                     <p>
-            <label>Book Author</label>
-            <br>
-            <input type="text"
+              <label>Book Author</label>
+             <br>
+                <input type="text"
                     name="book_author"
                     required
                     />
-            </p>
-        <p>
-            <label>Book Category</label>
-            <br>
-            <input type="text"
+             </p>
+            <p>
+                <label>Book Category</label>
+                <br>
+                <input type="text"
                     name="book_category"
                     required
                     />
-            </p>
+             </p>
 
-            <button type="submit">
-                save
-            </button>
+             <button type="submit">
+                 save
+                </button>
 
-            <a href= "index.php?sction=books">
-                Cancel
-            </a>
+                <a href= "index.php?section=books">
+                  Cancel
+             </a>
 
 
-</form>
+            </form>
 
-            <?php else : ?>
 
+    <?php elseif($action==='update'): ?>
+
+          <h2> Update Book</h2>
+          <h2><?=  htmlspecialchars($book['book_title'])?></h2>
+
+     <form method="POST">
+             <p>
+             <label>Book Title</label>
+                <br>
+                <input type="text"
+                    name="book_title"
+                    value="<?=  htmlspecialchars($book['book_title'])?>"
+                    required
+                    />
+             </p>
+                    <p>
+              <label>Book Author</label>
+             <br>
+                <input type="text"
+                    name="book_author"
+                    value="<?=  htmlspecialchars($book['book_author'])?>"
+                    required
+                    />
+             </p>
+            <p>
+                <label>Book Category</label>
+                <br>
+                <input type="text"
+                    name="book_category"
+                    value="<?=  htmlspecialchars($book['book_category'])?>"
+                    required
+                    />
+             </p>
+
+                <button type="submit">
+                    Save
+                </button>
+
+                <a href="index.php?section=books">
+                    Cancel
+                 </a>
+
+    </form>
+
+
+    <?php else : ?>
     
         <table>
             <thead>
@@ -446,8 +559,9 @@ if($section ==='students' && $action === 'update'){
                             <?=htmlspecialchars($book['book_created_at']) ?>
                         </td>
                          <td>
-                            <a>Edit</a>
-                            |
+                            <a href="index.php?section=books&action=update&id=<?= $book['book_id'] ?>">Edit</a>
+                            
+                             
                             <a>Delete</a>
                         </td>
                     </tr>
