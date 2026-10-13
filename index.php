@@ -672,74 +672,82 @@ if($section==='borrow' && $action==="create"){
 
     <?php endif;?>
 
+  
     <?php if($section === 'borrow'): ?>
         <h1>Borrow</h1>
-    <p>
-        <a href="index.php?section=borrow&action=create">
-            Borrow a Book
-        </a>
+         <p>
+                <a href="index.php?section=borrow&action=create">
+                    Borrow a Book
+                </a>
 
-</p>
+    </p>
 
-    <?php if($action=== 'create');?>
+
+    <?php if($action=== 'create'):?>
         <h3>Borrow a Book</h3>
-        <form method="POST"
-        <p>
-            <label>Student: </label>
-            <br>
-            <select name="student_id" required>
-                <option value="">
-                        -- select student -- 
-                </option>
+        
+        <form method="POST">
+            <p>
+                <label>Student: </label>
+                <br>
+                <select name="student_id" required>
+                    <option value="">
+                            -- select student --
+                    </option>
 
-                <?php foreach($students as $student): ?>
+                    <?php foreach($students as $student): ?>
 
-                        <option value=" <?=  $student['student_id'] ?> ">
-                            <?= htmlspecialchars(
-                                $student['student_first_name']
-                                .''. 
-                                $student['student_last_name']
-                            ) ?>
-                        </option>
-                <?php endforeach; ?>
-            </select>
+                            <option value=" <?= $student['student_id'] ?> ">
+                                <?= htmlspecialchars(
+                                    $student['student_first_name']
+                                    .' '.
+                                    $student['student_last_name']
+                                )?>
+                            </option>
 
-        </p>
 
-     <p>
-            <label>Book: </label>
-            <br>
-            <select name="book_id" required>
-                <option value="">
-                        -- select book -- 
-                </option>
+                    <?php endforeach; ?>
+                </select>
+            </p>
 
-                <?php foreach($books as $book): ?>
 
-                        <option value=" <?=  $book['book_id'] ?> ">
-                            <?= htmlspecialchars(
-                                $book['book_title']
-                                .'-'. 
-                                $book['book_author']
-                            ) ?>
-                        </option>
-                <?php endforeach; ?>
-            </select>
+            <p>
+                <label>Book: </label>
+                <br>
+                <select name="book_id" required>
+                    <option value="">
+                            -- select book --
+                    </option>
 
-        </p>
-       
-        <button type="submit">
-            Borrow
-        </button>
-        <a href="index.php?section=borrow">
-            Cancel
-        </a>
+                    <?php foreach($books as $book): ?>
+
+                            <option value=" <?= $book['book_id'] ?> ">
+                                <?= htmlspecialchars(
+                                    $book['book_title']
+                                    .' - '.
+                                    $book['book_author']
+                                )?>
+                            </option>
+
+
+                    <?php endforeach; ?>
+
+                </select>
+            </p>
+
+            <button type="submit">
+                Borrow
+            </button>
+            <a href="index.php?section=borrow">
+                Cancel
+            </a>
+
 
         </form>
+ 
 
+    <?php endif;?>
 
-    <?php endif;?>   
-    
     <?php endif;?>   
 
     
