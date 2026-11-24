@@ -2,7 +2,7 @@
 
 //Database Connection
 $host = 'localhost';
-$db = 'library_db';
+$db = 'library_db_1';
 $user = 'root';
 $pass = '';
 $charset = 'utf8mb4';
