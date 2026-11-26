@@ -1,61 +1,65 @@
-    SELECT
-        CONCAT(
+SELECT 
+CONCAT (
         s.student_first_name,
-        '',
+        ' ',
         s.student_last_name
-        ) AS student_name,
-
-        -- BOOKS
-        b.book_title,
-        b.book_author,
-        b.book_category,
-
-        -- BOOROW DATE
-        br.borrow_date
-
-        FROM borrow br
-
-        INNER JOIN students s 
-            ON br.student_id = s.student_id
-        INNER JOIN books b
-            ON br.book_id =b.book_id
-
-        WHERE br.borrow_return_date IS NULL
-
-        ORDER BY borrow_date DESC;
-
-    -- Return a book
-    UPDATE borrow
-    SET borrow_return_date = CURRENT_TIMESTAMP
-    WHERE borrow_id = 1
-        AND borrow_return_date IS NULL;
+) AS student_name,
 
 
+-- books 
+b.book_title,
+b.book_author,
+b.book_category,
 
-        ------
+-- borrow date
+br.borrow_date
 
-        SELECT
-        CONCAT(
+FROM borrow br
+
+INNER JOIN students s 
+    ON br.student_id = s.student_id
+
+INNER JOIN books b
+    ON br.book_id = b.book_id
+
+WHERE br.borrow_return_date IS NULL
+
+ORDER BY borrow_date DESC;
+
+-- return a book
+
+UPDATE borrow 
+SET borrow_return_date = CURRENT_TIMESTAMP
+WHERE borrow_id = 1
+    AND borrow_return_date IS NULL;
+
+-- view returned books
+
+SELECT 
+CONCAT (
         s.student_first_name,
-        '',
+        ' ',
         s.student_last_name
-        ) AS student_name,
+) AS student_name,
 
-        -- BOOKS
-        b.book_title,
-        b.book_author,
-        b.book_category,
 
-        -- BOOROW DATE
-        br.borrow_date
+-- books 
+b.book_title,
+b.book_author,
+b.book_category,
 
-        FROM borrow br
+-- borrow date
+br.borrow_date
 
-        INNER JOIN students s 
-            ON br.student_id = s.student_id
-        INNER JOIN books b
-            ON br.book_id =b.book_id
+FROM borrow br
 
-        WHERE br.borrow_return_date IS NOT NULL
+INNER JOIN students s 
+    ON br.student_id = s.student_id
 
-        ORDER BY borrow_date DESC;
+INNER JOIN books b
+    ON br.book_id = b.book_id
+
+WHERE br.borrow_return_date IS NOT NULL
+
+ORDER BY borrow_date DESC;
+

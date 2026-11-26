@@ -54,7 +54,7 @@
         SELECT 
             book_title
             book_author,
-            book_category,
+            book_category
         FROM books
         ORDER BY book_title ASC;
 
@@ -63,7 +63,7 @@
         SELECT 
                 book_title
             book_author,
-            book_category,
+            book_category
         FROM books
         ORDER BY book_title DESC;
         
